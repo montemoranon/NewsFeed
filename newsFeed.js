@@ -6,12 +6,7 @@ class NewsItem {
     }
 }
 
-function onPageLoad() {
-    generateESPNItems();
-    generateCNNItems();
-}
-
-function createXMLHTTPRequest(url) {
+function generateESPNItems() {
     var xmlhttp = null;
 
     if (window.XMLHttpRequest) {
@@ -22,13 +17,6 @@ function createXMLHTTPRequest(url) {
         // code for older versions of IE
         xmlhttp = new ActiveXObject();
     }
-
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-}
-
-function generateESPNItems() {
-    createXMLHTTPRequest('http://www.espn.com/espn/rss/nfl/news');
     
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -43,10 +31,10 @@ function generateESPNItems() {
             }
         }
     }
+
+    xmlhttp.open("GET", 'http://www.espn.com/espn/rss/nfl/news', true);
+    xmlhttp.send();
 }
 
 function generateCNNItems() {
-    createXMLHTTPRequest('http://rss.cnn.com/rss/cnn_world.rss');
-    
-    
 }
