@@ -3,7 +3,15 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        function httpGet(url) {
+        class NewsItem {
+            constructor(title, link, date) {
+                this.title = title;
+                this.link = link;
+                this.date = date;
+            }
+        }
+
+        function generateList(url) {
             // function to grab xml from rss feed
             var xmlhttp = null;
 
@@ -34,9 +42,8 @@
         }
     </script>
 </head>
-<body>
+<body onload="generateList('http://www.espn.com/espn/rss/nfl/news')">
 
-<button onclick="httpGet('http://www.espn.com/espn/rss/nfl/news')">Click Me!</button>
 <ul id="ESPNList"></ul>
 
 </body>
