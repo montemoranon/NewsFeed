@@ -4,6 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         function httpGet(url) {
+            // function to grab xml from rss feed
             var xmlhttp = null;
 
             if (window.XMLHttpRequest){
@@ -17,10 +18,18 @@
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState===4 && xmlhttp.status===200)
                 {
-                    document.getElementById("rssOut").innerHTML = xmlhttp.responseText;
+                    var xmlDoc = xmlhttp.responseXML;
+                    var items = xmlDoc.getElementsByTagName("item");
+                    var parentList = document.getElementById("ESPNList");
+
+                    for (var i = 0; i < items.length; i++) {
+                        var listItem = document.createElement("li");
+                        listItem.textContent = items[i].childNodes[0].textContent;
+                        parentList.appendChild(listItem);
+                    }
                 }
             }
-            xmlhttp.open("GET", url, false );
+            xmlhttp.open("GET", url, true );
             xmlhttp.send();
         }
     </script>
@@ -28,7 +37,7 @@
 <body>
 
 <button onclick="httpGet('http://www.espn.com/espn/rss/nfl/news')">Click Me!</button>
-<div id="rssOut"></div>
+<ul id="ESPNList"></ul>
 
 </body>
 </html>
