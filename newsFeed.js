@@ -8,7 +8,7 @@ class NewsItem {
 
 function onPageLoad() {
     generateXMLHTTPRequest(generateESPNItems, 'http://www.espn.com/espn/rss/nfl/news');
-    // generateXMLHTTPRequest(generateCNNItems, 'http://wxdata.weather.com/wxdata/weather/rss/local/14564');
+    generateXMLHTTPRequest(generateCNNItems, 'http://wxdata.weather.com/wxdata/weather/rss/local/14564');
 }
 
 function generateXMLHTTPRequest(func, url) {
