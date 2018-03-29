@@ -43,7 +43,6 @@ function generateESPNItems(xmlhttp) {
 
         listItem.textContent = items[i].childNodes[0].textContent;
         listItem.classList.add("list-group-item");
-        listItem.classList.add("ESPNListItem");
 
         parentList.appendChild(listItem);
     }
