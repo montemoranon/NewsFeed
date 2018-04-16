@@ -1,15 +1,14 @@
 var aggregateNewsItems = new Array();
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     loadSingleSportNews('nfl');
-//     loadSingleSportNews('nhl');
-//     loadSingleSportNews('nba');
-// 	console.log(aggregateNewsItems);
-//
-//     orderNewsItemsBeforeDisplay();
-//
-//     displayNewsItems();
-// })
+document.addEventListener("DOMContentLoaded", function() {
+    loadSingleSportNews('nfl');
+    loadSingleSportNews('nhl');
+    loadSingleSportNews('nba');
+
+    orderNewsItemsBeforeDisplay();
+
+    displayNewsItems();
+})
 
     function loadSingleSportNews(sport) {
         $.ajax({
@@ -31,13 +30,13 @@ var aggregateNewsItems = new Array();
 
                     var date = items[i].childNodes[3].innerHTML;
                     newsItem["date"] = date;
-
+ 
                     newsItems.push(newsItem);
                 }
 
                 addItemsToAggregate(newsItems);
             },
-            async: true
+            async: false
         })
     }
 
@@ -62,10 +61,12 @@ function displayNewsItems() {
 
     for (var i = 0; i < aggregateNewsItems.length; i++) {
         var link = document.createElement("a");
-        link.setAttribute("href", newsItems[i]["url"]);
+        link.setAttribute("href", aggregateNewsItems[i]["url"]);
+
+        var date = new Date(aggregateNewsItems[i]["date"]);
 
         var listItem = document.createElement("li");
-        listItem.innerHTML = aggregateNewsItems[i]["text"];
+        listItem.innerHTML = aggregateNewsItems[i]["text"] + " - " + date.toLocaleDateString('en-US');
 
         link.appendChild(listItem);
         htmlListItem.appendChild(link);

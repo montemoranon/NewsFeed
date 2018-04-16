@@ -19,23 +19,10 @@
 
 </head>
 
-<body onload="loadSingleSportNews('nfl'); loadSingleSportNews('nba'); loadSingleSportNews('nhl'); orderNewsItemsBeforeDisplay(); displayNewsItems();">
+<body>
     <div class="requirement">
         <h3>ESPN RSS feed</h3>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                Select A Sport
-            </button>
-            <div id="sportsHeader"></div>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" onclick="loadSingleSportNews('nfl')">NFL</a>
-                <a class="dropdown-item" onclick="loadSingleSportNews('nba')">NBA</a>
-                <a class="dropdown-item" onclick="loadSingleSportNews('nhl')">NHL</a>
-                <a class="dropdown-item" onclick="loadSingleSportNews('mlb')">MLB</a>
-            </div>
-            <div id="topNewsItemsDiv">
-            </div>
+        <div id="topNewsItemsDiv">
         </div>
     </div>
 </body>
