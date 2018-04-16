@@ -1,45 +1,45 @@
 var aggregateNewsItems = new Array();
 
-document.addEventListener("DOMContentLoaded", function() {
-    loadSingleSportNews('nfl');
-    loadSingleSportNews('nhl');
-    loadSingleSportNews('nba');
-	console.log(aggregateNewsItems);
+// document.addEventListener("DOMContentLoaded", function() {
+//     loadSingleSportNews('nfl');
+//     loadSingleSportNews('nhl');
+//     loadSingleSportNews('nba');
+// 	console.log(aggregateNewsItems);
+//
+//     orderNewsItemsBeforeDisplay();
+//
+//     displayNewsItems();
+// })
 
-    orderNewsItemsBeforeDisplay();
+    function loadSingleSportNews(sport) {
+        $.ajax({
+            url: 'http://www.espn.com/espn/rss/' + sport + '/news',
+            success: function (data) {
+                var items = data.getElementsByTagName("item");
+                var newsItems = new Array();
 
-    displayNewsItems();
-})
+                for (var i = 0; i < items.length; i++) {
+                    // create a single news item with each iteration, a list of objects
+                    var newsItem = {};
 
-function loadSingleSportNews(sport) {
-    $.ajax({
-        url: 'http://www.espn.com/espn/rss/' + sport + '/news',
-        success: function (data) {
-			var items = data.getElementsByTagName("item");
-            var newsItems = new Array();
+                    var text = items[i].childNodes[0].textContent;
+                    newsItem["text"] = text;
 
-            for (var i = 0; i < items.length; i++) {
-                // create a single news item with each iteration, a list of objects
-                var newsItem = {};
+                    var url = items[i].childNodes[2].innerHTML;
+                    url = htmlWithCDATASectionsToHtmlWithout(url);
+                    newsItem["url"] = url;
 
-                var text = items[i].childNodes[0].textContent;
-                newsItem["text"] = text;
+                    var date = items[i].childNodes[3].innerHTML;
+                    newsItem["date"] = date;
 
-                var url = items[i].childNodes[2].innerHTML;
-                url = htmlWithCDATASectionsToHtmlWithout(url);
-                newsItem["url"] = url;
+                    newsItems.push(newsItem);
+                }
 
-                var date = items[i].childNodes[3].innerHTML;
-                newsItem["date"] = date;
-
-                newsItems.push(newsItem);
-            }
-
-            addItemsToAggregate(newsItems);
-        },
-        async: true
-    })
-}
+                addItemsToAggregate(newsItems);
+            },
+            async: true
+        })
+    }
 
 // takes a list of newsItem objects and adds them to the aggregate list
 function addItemsToAggregate(itemsToAdd) {
