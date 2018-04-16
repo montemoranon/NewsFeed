@@ -1,5 +1,16 @@
-.requirement {
-    margin-left: 50px
+.heading {
+    margin-left: 50px;
+}
+
+.title {
+    width: 50%;
+    float: left;
+    color: #FFFFFF;
+}
+
+.sport-selection {
+    width: 40%;
+    float: left;
 }
 
 #topNewsItemsDiv {
