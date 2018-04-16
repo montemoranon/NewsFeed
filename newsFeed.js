@@ -1,35 +1,21 @@
+var aggregateNewsItems = new Array();
+
 document.addEventListener("DOMContentLoaded", function() {
     loadSingleSportNews('nfl');
     loadSingleSportNews('nhl');
     loadSingleSportNews('nba');
+	console.log(aggregateNewsItems);
 
     orderNewsItemsBeforeDisplay();
 
     displayNewsItems();
 })
 
-var aggregateNewsItems = new Array();
-
 function loadSingleSportNews(sport) {
     $.ajax({
         url: 'http://www.espn.com/espn/rss/' + sport + '/news',
         success: function (data) {
-            if (document.contains(document.getElementById("headerText"))) {
-                document.getElementById("headerText").remove();
-                document.getElementById("topNewsItems").remove();
-            }
-
-            var header = document.createElement("h5");
-            var sportsDiv = document.getElementById("sportsHeader");
-
-            header.setAttribute("id", "headerText");
-            header.innerHTML = "Top 5 " + sport.toUpperCase() + " News Items";
-            sportsDiv.appendChild(header);
-
-            var items = data.getElementsByTagName("item");
-            var parentList = document.createElement("ul");
-
-            parentList.setAttribute("id", "topNewsItems");
+			var items = data.getElementsByTagName("item");
             var newsItems = new Array();
 
             for (var i = 0; i < items.length; i++) {
@@ -60,12 +46,13 @@ function addItemsToAggregate(itemsToAdd) {
     for (var i = 0; i < itemsToAdd.length; i++) {
         aggregateNewsItems.push(itemsToAdd[i]);
     }
+	console.log(aggregateNewsItems);
 }
 
 // sorts the aggregate list by date before display
 function orderNewsItemsBeforeDisplay() {
     aggregateNewsItems.sort(function(a, b) {
-        return new Date(b["date"]) - new  Date(a.date);
+        return new Date(b["date"]) - new  Date(a["date"]);
     })
 }
 
