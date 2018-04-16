@@ -10,7 +10,7 @@ $user_data = array(
     'favorites' => array()
 );
 
-$current_users = read_json_file($user_info_file);
+$current_users = read_database();
 $current_users[$username] = $user_data;
 
-write_array_to_json_file($current_users, $user_info_file);
+write_database($current_users);
