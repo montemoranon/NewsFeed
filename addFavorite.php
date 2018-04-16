@@ -11,11 +11,7 @@ $new_favorite = array(
     'title' => $title
 );
 
-$current_users = read_database();
-
 // add favorite object to user
-$user_object = $current_users[$username];
-$user_favorites = $user_object['favorites'];
-array_push($user_favorites, $new_favorite);
-
+$current_users = read_database();
+array_push($current_users[$username]['favorites'], $new_favorite);
 write_database($current_users);
