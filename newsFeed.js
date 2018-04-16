@@ -1,4 +1,16 @@
-function sportRSS(sport) {
+document.addEventListener("DOMContentLoaded", function() {
+    loadSingleSportNews('nfl');
+    loadSingleSportNews('nhl');
+    loadSingleSportNews('nba');
+
+    orderNewsItemsBeforeDisplay();
+
+    displayNewsItems();
+})
+
+var aggregateNewsItems = new Array();
+
+function loadSingleSportNews(sport) {
     $.ajax({
         url: 'http://www.espn.com/espn/rss/' + sport + '/news',
         success: function (data) {
@@ -22,43 +34,56 @@ function sportRSS(sport) {
 
             for (var i = 0; i < items.length; i++) {
                 // create a single news item with each iteration, a list of objects
-                var newsItem = new Array();
+                var newsItem = {};
 
                 var text = items[i].childNodes[0].textContent;
-                newsItem.push(text);
+                newsItem["text"] = text;
 
                 var url = items[i].childNodes[2].innerHTML;
                 url = htmlWithCDATASectionsToHtmlWithout(url);
-                newsItem.push(url);
+                newsItem["url"] = url;
 
                 var date = items[i].childNodes[3].innerHTML;
-                newsItem.push(date);
+                newsItem["date"] = date;
 
                 newsItems.push(newsItem);
-                console.log(newsItems);
             }
 
-            // place each newsItem in chronological order in list
-            /* for (var i = 0; i < 5; i++) {
-                var link = document.createElement("a");
-                var listItem = document.createElement("li");
-
-                listItem.textContent = items[i].childNodes[0].textContent;
-                listItem.classList.add("list-group-item");
-
-                var linkURL = items[i].childNodes[2].innerHTML;
-                linkURL = htmlWithCDATASectionsToHtmlWithout(linkURL);
-
-                link.setAttribute("href", linkURL);
-
-                link.appendChild(listItem);
-                parentList.appendChild(link);
-            } */
-
-            document.getElementById("topNewsItemsDiv").appendChild(parentList);
+            addItemsToAggregate(newsItems);
         },
         async: true
     })
+}
+
+// takes a list of newsItem objects and adds them to the aggregate list
+function addItemsToAggregate(itemsToAdd) {
+    for (var i = 0; i < itemsToAdd.length; i++) {
+        aggregateNewsItems.push(itemsToAdd[i]);
+    }
+}
+
+// sorts the aggregate list by date before display
+function orderNewsItemsBeforeDisplay() {
+    aggregateNewsItems.sort(function(a, b) {
+        return new Date(b["date"]) - new  Date(a.date);
+    })
+}
+
+// places the aggregate news items on the page
+function displayNewsItems() {
+    var htmlListItem = document.createElement("ul");
+
+    for (var i = 0; i < aggregateNewsItems.length; i++) {
+        var link = document.createElement("a");
+        link.setAttribute("href", newsItems[i]["url"]);
+
+        var listItem = document.createElement("li");
+        listItem.innerHTML = aggregateNewsItems[i]["text"];
+
+        link.appendChild(listItem);
+        htmlListItem.appendChild(link);
+        document.getElementById("topNewsItemsDiv").appendChild(htmlListItem);
+    }
 }
 
 // copy pasted from https://stackoverflow.com/questions/7065615/innerhtml-converts-cdata-to-comments
