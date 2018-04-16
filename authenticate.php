@@ -15,5 +15,3 @@ if (array_key_exists($username, $users)) {
         echo "You're in."
     }
 }
-
-
