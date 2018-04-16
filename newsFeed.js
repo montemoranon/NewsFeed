@@ -1,14 +1,5 @@
-class NewsItem {
-    constructor(title, link, date) {
-        this.title = title;
-        this.link = link;
-        this.date = date;
-    }
-}
-
 function onPageLoad() {
     generateXMLHTTPRequest(generateESPNItems, 'http://www.espn.com/espn/rss/nfl/news');
-    generateXMLHTTPRequest(generateCNNItems, 'https://crossorigin.me/http://wxdata.weather.com/wxdata/weather/rss/local/14564');
 }
 
 function generateXMLHTTPRequest(func, url) {
@@ -46,26 +37,4 @@ function generateESPNItems(xmlhttp) {
 
         parentList.appendChild(listItem);
     }
-}
-
-function generateCNNItems(xmlhttp) {
-    /*
-    var xmlDoc = xmlhttp.responseXML;
-    var weatherItems = xmlDoc.getElementsByTagName("item");
-    var numberOfItems = weatherItems.length;
-
-    for (var i=0; i <= numberOfItems; i++) {
-        var weatherItem = weatherItems[i];
-        var listItem = document.createElement("li");
-
-        listItem.innerHTML = weatherItem.textContent;
-
-        var parentList = document.getElementById("WeatherList");
-
-        parentList.appendChild(listItem);
-    }
-    */
-
-    var parser = new DOMParser();
-    xmlDoc = 
 }
