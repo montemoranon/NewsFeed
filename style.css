@@ -1,0 +1,14 @@
+.requirement {
+    margin-left: 50px
+}
+
+#topNewsItemsDiv {
+    padding: 0px;
+    width: 50%;
+    display: block;
+    margin-top: 10px;
+}
+
+#topNewsItems {
+    padding: 0px;
+}
