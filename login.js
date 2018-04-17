@@ -18,7 +18,10 @@ function authenticate(userName, password) {
         data: '{"userName": "' + userName + '", "password" : "' + password + '"}',
         success: function(data) {
             console.log(data);
-        } 
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert(errorThrown);
+         }
     })
 }
 // $( "#login-form" ).submit(function( event ) {
