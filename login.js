@@ -14,6 +14,8 @@ function authenticate(userName, password) {
     $.ajax({
         type: "POST",
         url: "authenticate.php",
+        datatype: "json",
+        data: '{"userName": "' + userName + '", "password" : "' + password + '"}',
         success: function(data) {
             console.log(data);
         } 
