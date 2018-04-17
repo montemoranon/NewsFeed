@@ -1,16 +1,30 @@
-.heading {
-    margin-left: 50px;
+body {
+    padding-left: 50px;
 }
 
-.title {
+#title {
     width: 50%;
     float: left;
-    color: #FFFFFF;
 }
 
-.sport-selection {
+#sport-selection-container {
     width: 40%;
     float: left;
+    position: relative;
+}
+
+#sport-selection {
+    float: left;
+}
+
+#submit-new-sports {
+    width: 50px;
+    height: 30px;
+    float: left;
+    position: absolute;
+    margin-left: 10px;
+    top: 50%;
+    margin-top: -15px;
 }
 
 #topNewsItemsDiv {
@@ -23,3 +37,8 @@
 #topNewsItems {
     padding: 0px;
 }
+
+.form-check {
+    margin-left: 10px;
+}
+

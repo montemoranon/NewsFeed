@@ -10,35 +10,35 @@ document.addEventListener("DOMContentLoaded", function() {
     displayNewsItems();
 })
 
-    function loadSingleSportNews(sport) {
-        $.ajax({
-            url: 'http://www.espn.com/espn/rss/' + sport + '/news',
-            success: function (data) {
-                var items = data.getElementsByTagName("item");
-                var newsItems = new Array();
+function loadSingleSportNews(sport) {
+    $.ajax({
+        url: 'http://www.espn.com/espn/rss/' + sport + '/news',
+        success: function (data) {
+            var items = data.getElementsByTagName("item");
+            var newsItems = new Array();
 
-                for (var i = 0; i < items.length; i++) {
-                    // create a single news item with each iteration, a list of objects
-                    var newsItem = {};
+            for (var i = 0; i < items.length; i++) {
+                // create a single news item with each iteration, a list of objects
+                var newsItem = {};
 
-                    var text = items[i].childNodes[0].textContent;
-                    newsItem["text"] = text;
+                var text = items[i].childNodes[0].textContent;
+                newsItem["text"] = text;
 
-                    var url = items[i].childNodes[2].innerHTML;
-                    url = htmlWithCDATASectionsToHtmlWithout(url);
-                    newsItem["url"] = url;
+                var url = items[i].childNodes[2].innerHTML;
+                url = htmlWithCDATASectionsToHtmlWithout(url);
+                newsItem["url"] = url;
 
-                    var date = items[i].childNodes[3].innerHTML;
-                    newsItem["date"] = date;
- 
-                    newsItems.push(newsItem);
-                }
+                var date = items[i].childNodes[3].innerHTML;
+                newsItem["date"] = date;
 
-                addItemsToAggregate(newsItems);
-            },
-            async: false
-        })
-    }
+                newsItems.push(newsItem);
+            }
+
+            addItemsToAggregate(newsItems);
+        },
+        async: false
+    })
+}
 
 // takes a list of newsItem objects and adds them to the aggregate list
 function addItemsToAggregate(itemsToAdd) {
@@ -59,19 +59,51 @@ function orderNewsItemsBeforeDisplay() {
 function displayNewsItems() {
     var htmlListItem = document.createElement("ul");
 
-    for (var i = 0; i < aggregateNewsItems.length; i++) {
-        var link = document.createElement("a");
-        link.setAttribute("href", aggregateNewsItems[i]["url"]);
-
-        var date = new Date(aggregateNewsItems[i]["date"]);
-
-        var listItem = document.createElement("li");
-        listItem.innerHTML = aggregateNewsItems[i]["text"] + " - " + date.toLocaleDateString('en-US');
-
-        link.appendChild(listItem);
-        htmlListItem.appendChild(link);
-        document.getElementById("topNewsItemsDiv").appendChild(htmlListItem);
+    if (aggregateNewsItems.length == 0) {
+        var noContentHeading = document.createElement("p");
+        noContentHeading.innerHTML = "You don't have any sports selected!";
+        document.getElementById("topNewsItemsDiv").appendChild(noContentHeading);
     }
+    else {
+        for (var i = 0; i < aggregateNewsItems.length; i++) {
+            var link = document.createElement("a");
+            link.setAttribute("href", aggregateNewsItems[i]["url"]);
+
+            var date = new Date(aggregateNewsItems[i]["date"]);
+
+            var listItem = document.createElement("li");
+            listItem.innerHTML = aggregateNewsItems[i]["text"] + " - " + date.toLocaleDateString('en-US');
+
+            link.appendChild(listItem);
+            htmlListItem.appendChild(link);
+            document.getElementById("topNewsItemsDiv").appendChild(htmlListItem);
+        }
+    }
+}
+
+function reloadNewsItems() {
+    var listOfSports = new Array();
+
+    if (document.getElementById('nfl-check-box').checked) {
+        listOfSports.push('nfl');
+    }
+
+    if (document.getElementById('nhl-check-box').checked) {
+        listOfSports.push('nhl');
+    }
+    if (document.getElementById('nba-check-box').checked) {
+        listOfSports.push('nba');
+    }
+
+    aggregateNewsItems = [];
+    document.getElementById("topNewsItemsDiv").innerHTML = "";
+
+    for (var i = 0; i < listOfSports.length; i++) {
+        loadSingleSportNews(listOfSports[i]);
+    }
+
+    orderNewsItemsBeforeDisplay();
+    displayNewsItems();
 }
 
 // copy pasted from https://stackoverflow.com/questions/7065615/innerhtml-converts-cdata-to-comments
