@@ -10,27 +10,28 @@ $(document).ready(function () {
     });
 });
 
-function authenticate(userName, password) {
-    $.ajax({
-        type: "POST",
-        url: "authenticate.php",
-        datatype: "json",
-        data: '{"userName": "' + userName + '", "password" : "' + password + '"}',
-        success: function(data) {
-            console.log(data);
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert(errorThrown);
-         }
-    })
-}
-// $( "#login-form" ).submit(function( event ) {
-//     // stop the form from submitting normally
-//     event.preventDefault();
+// function authenticate(userName, password) {
+//     $.ajax({
+//         type: "POST",
+//         url: "authenticate.php",
+//         datatype: "json",
+//         data: '{"userName": "' + userName + '", "password" : "' + password + '"}',
+//         success: function(data) {
+//             console.log(data);
+//         },
+//         error: function(XMLHttpRequest, textStatus, errorThrown) {
+//             alert(errorThrown);
+//          }
+//     })
+// }
 
-//     var posting = $.post( "authenticate.php", $("login-form").serialize());
+$( "#login-form" ).submit(function( event ) {
+    // stop the form from submitting normally
+    event.preventDefault();
 
-//     posting.done(function( data ) {
-//       console.log(data); 
-//     });
-//   });
+    var posting = $.post( "authenticate.php", $("login-form").serialize());
+
+    posting.done(function( data ) {
+      console.log(data); 
+    });
+  });
