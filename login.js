@@ -19,7 +19,11 @@ function authenticate(userName, password) {
         datatype: "json",
         data: userInfo,
         success: function(data) {
-            console.log(data);
+            var dataAsJSON = JSON.parse(data);
+
+            if (dataAsJSON["success"] == true) {
+                window.location.replace("index.html");
+            }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
