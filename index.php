@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -21,8 +24,10 @@
             crossorigin="anonymous"></script>
 
 </head>
-
 <body>
+<?php
+if ($_SESSION['username'] == "") {
+?>
 <div id="heading">
     <h3 id="title">ESPN RSS feed</h3>
     <div id="sport-selection-container">
@@ -61,3 +66,13 @@
 </body>
 
 </html>
+<?php
+} else {
+?>
+
+<h1> Sorry, you must sign in! </h1>
+<br>
+<p>Please <a href="login.php">login</a> or <a href="signup.php">sign up</p>
+<?php
+}
+?>
