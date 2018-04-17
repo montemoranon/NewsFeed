@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require('common.php');
 
 $username = $_POST['username'];
@@ -14,6 +14,7 @@ if (array_key_exists($username, $users)) {
 
     if($password == $password_on_file) {
         $results['success'] = TRUE;
+        $_SESSION['username'] = $username;
     } else {
         $results['success'] = FALSE;
         $results['message'] = "Incorrect password.";
