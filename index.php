@@ -26,7 +26,7 @@ session_start();
 </head>
 <body>
 <?php
-if ($_SESSION['username'] == "") {
+if ($_SESSION['username'] != "") {
 ?>
 <div id="heading">
     <h3 id="title">ESPN RSS feed</h3>
