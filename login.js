@@ -1,15 +1,10 @@
 function attemptSignIn() {
-    var name = document.getElementById("userName");
-    var password = document.getElementById("userPassword");
-
-    var data = {username: name, password: password};
-
     $.ajax({
         type: "POST",
         url: "authenticate.php",
-        data: data,
+        data: $("#login-form").serialize(),
         success: function(data) {
-            alert(data);
+           	console.log(data);
         }
     })
 }
