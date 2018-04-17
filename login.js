@@ -11,11 +11,13 @@ $(document).ready(function () {
 });
 
 function authenticate(userName, password) {
+    var fakeData = {name: "nick", password: "pass"}
+
     $.ajax({
         type: "POST",
         url: "authenticate.php",
         datatype: "json",
-        data: '{"userName": name, "password" : password}',
+        data: fakeData,
         success: function(data) {
             console.log(data);
         },
