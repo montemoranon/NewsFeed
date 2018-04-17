@@ -72,7 +72,7 @@ if ($_SESSION['username'] != "") {
 
 <h1> Sorry, you must sign in! </h1>
 <br>
-<p>Please <a href="login.php">login</a> or <a href="signup.php">sign up</p>
+<p>Please <a href="login.html">login</a> or <a href="signup.php">sign up</p>
 <?php
 }
 ?>
