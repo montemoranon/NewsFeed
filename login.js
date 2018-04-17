@@ -11,15 +11,15 @@ $(document).ready(function () {
 });
 
 function authenticate(userName, password) {
-    var fakeData = {name: "nick", password: "pass"}
+    var userInfo = {name: userName, password: password};
 
     $.ajax({
         type: "POST",
         url: "authenticate.php",
         datatype: "json",
-        data: fakeData,
+        data: userInfo,
         success: function(data) {
-            
+            console.log(data);
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
