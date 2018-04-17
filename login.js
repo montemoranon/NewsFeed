@@ -19,7 +19,7 @@ function authenticate(userName, password) {
         datatype: "json",
         data: fakeData,
         success: function(data) {
-            console.log(data);
+            
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
