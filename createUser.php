@@ -17,8 +17,8 @@ if (!array_key_exists($username, $users)) {
 
     write_database($current_users);
 
-    return TRUE;
+    return "success";
 } else {
     // if username already exists, do nothing and return false
-    return FALSE;
+    return "Username already exists in database";
 }
