@@ -68,6 +68,7 @@ function displayNewsItems() {
         for (var i = 0; i < aggregateNewsItems.length; i++) {
             var link = document.createElement("a");
             link.setAttribute("href", aggregateNewsItems[i]["url"]);
+            link.setAttribute("class", "news-element");
 
             var date = new Date(aggregateNewsItems[i]["date"]);
 
@@ -77,9 +78,8 @@ function displayNewsItems() {
             link.appendChild(listItem);
             htmlListItem.appendChild(link);
 
-            var favoriteButton = document.createElement("button");
-            favoriteButton.setAttribute("type", "radio");
-            htmlListItem.appendChild(favoriteButton);
+            var likeButton = createLikeButton();
+            htmlListItem.appendChild(likeButton);
 
             document.getElementById("topNewsItemsDiv").appendChild(htmlListItem);
         }
@@ -109,6 +109,20 @@ function reloadNewsItems() {
 
     orderNewsItemsBeforeDisplay();
     displayNewsItems();
+}
+
+function createLikeButton() {
+    var label = document.createElement("label");
+
+    var button = document.createElement("input");
+    button.setAttribute("type", "checkbox");
+    button.setAttribute("value", "");
+    button.setAttribute("class", "news-element");
+
+    label.appendChild(button);
+    label.innerText = "favorite";
+
+    return label;
 }
 
 // copy pasted from https://stackoverflow.com/questions/7065615/innerhtml-converts-cdata-to-comments
