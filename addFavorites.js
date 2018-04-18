@@ -24,8 +24,8 @@ $(document).ready(function(){
                 data: postData,
                 dataType: "json",
                 success: function(data) {
-                    dataAsJSON = JSON.parse(data);
-                    console.log(dataAsJSON);
+                    //dataAsJSON = JSON.parse(data);
+                    console.log(data);
                 }
             })
         }
