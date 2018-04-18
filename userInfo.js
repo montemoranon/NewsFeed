@@ -30,7 +30,22 @@ function createNewUser(userName, password) {
         datatype: "json",
         data: userInfo,
         success: function(data) {
-            console.log(data);
+            if (data['success'] == true) {
+                window.location.replace("index.php");
+            } else {
+                if (document.getElementById("sign-up-error-message")) {
+                    document.getElementById("sign-up-error-message").remove();
+                }
+
+                var errorMessage = document.createElement("p");
+                errorMessage.setAttribute("id", "sign-up-error-message");
+
+                errorMessage.innerHTML = "Username already exists";
+                errorMessage.style.color = "red";
+
+                var container = document.getElementById("login-container");
+                container.appendChild(errorMessage);
+            }
         }
     })
 }
