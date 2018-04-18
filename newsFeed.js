@@ -123,6 +123,7 @@ function createLikeButton() {
     button.setAttribute("type", "checkbox");
     button.setAttribute("value", "");
     button.setAttribute("class", "news-element");
+    button.setAttribute("class", "like-button");
 	button.setAttribute("style", "margin-left:10px; margin-top: 6px;")	
 
     label.appendChild(button);
