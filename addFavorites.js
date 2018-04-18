@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $(".like-button").click(function(){
         // if the button is not checked, the item must be added as a favorite on click
-        if (!this.checked) {
+        if (this.checked) {
             var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
 
             $.ajax({
