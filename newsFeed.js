@@ -10,6 +10,21 @@ document.addEventListener("DOMContentLoaded", function() {
     displayNewsItems();
 })
 
+$(document).ready(function() {
+    $("#favorites-list-button").click(function() {
+        $.ajax({
+            method: "GET",
+            url: "getFavorites.php",
+            datatype: "json",
+            success: function(data) {
+                loadFavorites(data);
+                orderNewsItemsBeforeDisplay();
+                displayNewsItems();
+            }
+        })
+    })
+})
+
 function loadSingleSportNews(sport) {
     $.ajax({
         url: 'http://www.espn.com/espn/rss/' + sport + '/news',
@@ -38,6 +53,27 @@ function loadSingleSportNews(sport) {
         },
         async: false
     })
+}
+
+function loadFavorites() {
+    var newsItems = {};
+
+    for (var url in data) {
+        if (data.hasOwnProperty(url)) {
+            var textDatePair = data[url];
+            var text = textDatePair[0];
+            var date = textDatePair[1];
+
+            var newsItem = {};
+            newsItem['text'] = text;
+            newsItem['url'] = url;
+            newsItem['date'] = date;
+
+            newsItems.push(newsItem);
+        }
+    }
+
+    addItemsToAggregate(newsItems);
 }
 
 // takes a list of newsItem objects and adds them to the aggregate list
