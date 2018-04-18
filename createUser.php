@@ -5,6 +5,8 @@ require('common.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
 
+$response = array();
+
 if (!array_key_exists($username, $users)) {
     // if the username does not exist, create user and return true
     $user_data = array(
@@ -17,8 +19,10 @@ if (!array_key_exists($username, $users)) {
 
     write_database($current_users);
 
-    return "success";
+    $response['success'] = TRUE;
 } else {
     // if username already exists, do nothing and return false
-    return "Username already exists in database";
+	$response['success'] = FALSE;	
 }
+
+echo json_encode($response);
