@@ -61,6 +61,7 @@ if ($_SESSION['username'] != "") {
         <button class="btn-default" id="submit-new-sports" onclick="reloadNewsItems()">Go!</button>
     </div>
 </div>
+<?php echo "<h3>" . $_SESSION['username'] . "</h3>" ?>
 <div id="topNewsItemsDiv">
 </div>
 </body>
