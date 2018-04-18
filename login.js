@@ -24,9 +24,18 @@ function authenticate(userName, password) {
            if (dataAsJSON["success"] == true) {
                window.location.replace("index.php");
             } else {
-                var errorMessage = document.createElement("p");
-                errorMessage.innerHTML = dataAsJSON["message"];
-                errorMessage.style.color = "red";
+
+               // check whether the login has already failed and produce error message
+               // if prior failure, erase previous message
+                if (document.getElementById("login-error-message")) {
+                    document.getElementById("login-error-message").innerHTML = "";
+                } else {
+                    var errorMessage = document.createElement("p");
+                    errorMessage.setAttribute("id", "login-error-message");
+                }
+
+                document.getElementById("login-error-message").innerHTML = dataAsJSON["message"];
+                document.getElementById("login-error-message").style.color = "red";
 
                 var container = document.getElementById("login-container");
                 container.appendChild(errorMessage);
