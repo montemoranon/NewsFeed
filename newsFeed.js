@@ -76,6 +76,11 @@ function displayNewsItems() {
 
             link.appendChild(listItem);
             htmlListItem.appendChild(link);
+
+            var favoriteButton = document.createElement("button");
+            favoriteButton.setAttribute("type", "radio");
+            htmlListItem.appendChild(favoriteButton);
+
             document.getElementById("topNewsItemsDiv").appendChild(htmlListItem);
         }
     }
