@@ -120,7 +120,17 @@ function displayNewsItems() {
 
             link.appendChild(listItem);
 
-            var likeButton = createLikeButton();
+            var isFavorited;
+            $.ajax({
+                url: "isFavorite.php",
+                method: "POST",
+                datatype: "json",
+                success: function(data) {
+                    isFavorited = data['favorite'];
+                }
+            })
+
+            var likeButton = createLikeButton(isFavorited);
             likeButton.childNodes[0].setAttribute("data-text", text);
             likeButton.childNodes[0].setAttribute("data-link", linkText);
             likeButton.childNodes[0].setAttribute("data-date", date);
@@ -160,15 +170,18 @@ function reloadNewsItems() {
     displayNewsItems();
 }
 
-function createLikeButton() {
+function createLikeButton(isFavorited) {
     var label = document.createElement("label");
 
     var button = document.createElement("input");
     button.setAttribute("type", "checkbox");
-    button.setAttribute("value", "");
     button.setAttribute("class", "news-element");
     button.setAttribute("class", "like-button");
-	button.setAttribute("style", "margin-left:10px; margin-top: 6px;")	
+	button.setAttribute("style", "margin-left:10px; margin-top: 6px;");
+
+	if (isFavorited) {
+	    button.checked = true;
+    }
 
     label.appendChild(button);
 
