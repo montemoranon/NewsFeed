@@ -30,7 +30,9 @@ function createNewUser(userName, password) {
         datatype: "json",
         data: userInfo,
         success: function(data) {
-            if (data['success'] == true) {
+            var dataAsJSON = JSON.parse(data);
+
+            if (dataAsJSON['success'] == true) {
                 window.location.replace("index.php");
             } else {
                 if (document.getElementById("sign-up-error-message")) {
