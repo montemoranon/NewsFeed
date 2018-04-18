@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //event handler for submit button
+    //event handler for login button
     $("#login-submit").click(function () {
         //collect userName and password entered by users
         var userName = $("#username").val();
@@ -8,7 +8,32 @@ $(document).ready(function () {
         //call the authenticate function
         authenticate(userName, password);
     });
+
+    // event handler for sign-up button
+    $("#sign-up-submit").click(function () {
+        //collect userName and password entered by users
+        var userName = $("#username").val();
+        var password = $("#password").val();
+
+        //call the authenticate function
+        createNewUser(userName, password);
+    });
+
 });
+
+function createNewUser(userName, password) {
+    var userInfo = {username: userName, password: password};
+
+    $.ajax({
+        type: "POST",
+        url: "createUser.php",
+        datatype: "json",
+        data: userInfo,
+        success: function(data) {
+            console.log(data);
+        }
+    })
+}
 
 function authenticate(userName, password) {
     var userInfo = {username: userName, password: password};
