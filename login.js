@@ -28,14 +28,14 @@ function authenticate(userName, password) {
                // check whether the login has already failed and produce error message
                // if prior failure, erase previous message
                 if (document.getElementById("login-error-message")) {
-                    document.getElementById("login-error-message").innerHTML = "";
-                } else {
-                    var errorMessage = document.createElement("p");
-                    errorMessage.setAttribute("id", "login-error-message");
+                    document.getElementById("login-error-message").remove();
                 }
 
-                document.getElementById("login-error-message").innerHTML = dataAsJSON["message"];
-                document.getElementById("login-error-message").style.color = "red";
+                var errorMessage = document.createElement("p");
+                errorMessage.setAttribute("id", "login-error-message");
+
+                errorMessage.innerHTML = dataAsJSON["message"];
+                errorMessage.style.color = "red";
 
                 var container = document.getElementById("login-container");
                 container.appendChild(errorMessage);
