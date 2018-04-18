@@ -24,5 +24,4 @@ if (array_key_exists($username, $users)) {
     $results['message'] = "This username does not exist in our database.";
 }
 
-echo $username;
-//echo json_encode($results);
+echo json_encode($results);
