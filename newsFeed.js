@@ -67,7 +67,7 @@ function displayNewsItems() {
     else {
         for (var i = 0; i < aggregateNewsItems.length; i++) {
             var text = aggregateNewsItems[i]["text"];
-            var linkText = aggregateNewsItems[i]["text"]
+            var linkText = aggregateNewsItems[i]["url"]
             var date = new Date(aggregateNewsItems[i]["date"]);
 
             var link = document.createElement("a");
