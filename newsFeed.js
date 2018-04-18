@@ -136,6 +136,19 @@ function createLikeButton() {
     return label;
 }
 
+$(document).ready(function() {
+    $("#favorites-list-button").click(function() {
+        $.ajax({
+            method: "get",
+            url: "getFavorites.php",
+            datatype: "json",
+            success: function(data) {
+                console.log(data);
+            }
+        })
+    })
+})
+
 // copy pasted from https://stackoverflow.com/questions/7065615/innerhtml-converts-cdata-to-comments
 function htmlWithCDATASectionsToHtmlWithout(html) {
     var ATTRS = "(?:[^>\"\']|\"[^\"]*\"|\'[^\']*\')*",
