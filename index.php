@@ -23,8 +23,6 @@ session_start();
 
     <script type="text/javascript" src="./newsFeed.js"></script>
     <script type="text/javascript" src="./addFavorites.js"></script>
-    <script type="text/javascript" src="./goToFavorites.js"></script>
-
 </head>
 <body>
 <?php

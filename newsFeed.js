@@ -55,8 +55,9 @@ function loadSingleSportNews(sport) {
     })
 }
 
-function loadFavorites() {
-    var newsItems = {};
+function loadFavorites(data) {
+    var newsItems = new Array();
+	data = JSON.parse(data);
 
     for (var url in data) {
         if (data.hasOwnProperty(url)) {
@@ -73,6 +74,8 @@ function loadFavorites() {
         }
     }
 
+	aggregateNewsItems = [];
+	document.getElementById("topNewsItemsDiv").innerHTML = "";
     addItemsToAggregate(newsItems);
 }
 
