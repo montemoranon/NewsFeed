@@ -4,7 +4,7 @@ require('common.php');
 
 $username = $_SESSION['username'];
 $link = $_POST['link'];
-$title = $_POST['title'];
+$title = $_POST['text'];
 $date = $_POST['date'];
 
 // add favorite object to user
