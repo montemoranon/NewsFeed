@@ -11,7 +11,7 @@ $(document).ready(function () {
 });
 
 function authenticate(userName, password) {
-    var userInfo = {name: userName, password: password};
+    var userInfo = {username: userName, password: password};
 
     $.ajax({
         type: "POST",
