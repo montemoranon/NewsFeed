@@ -139,7 +139,7 @@ function createLikeButton() {
 $(document).ready(function() {
     $("#favorites-list-button").click(function() {
         $.ajax({
-            method: "get",
+            method: "GET",
             url: "getFavorites.php",
             datatype: "json",
             success: function(data) {
