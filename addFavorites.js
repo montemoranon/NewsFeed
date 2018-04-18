@@ -8,12 +8,7 @@ $(document).ready(function(){
                 type: "POST",
                 url: "addFavorite.php",
                 data: postData,
-                datatype: "json",
-                success: function(data) {
-                    //dataAsJSON = JSON.parse(data);
-                    console.log(data);
-                }
-    
+                datatype: "json"
             })
         } else {
             var postData = {link: this.dataset.link};
@@ -22,11 +17,7 @@ $(document).ready(function(){
                 type: "POST",
                 url: "removeFavorite.php",
                 data: postData,
-                dataType: "json",
-                success: function(data) {
-                    //dataAsJSON = JSON.parse(data);
-                    console.log(data);
-                }
+                dataType: "json"
             })
         }
     })
