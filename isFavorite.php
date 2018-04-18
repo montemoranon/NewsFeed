@@ -2,13 +2,14 @@
 session_start();
 require('common.php');
 
-$username = $_SESSION['username'];
+$username = $_POST['username'];
 $link = $_POST['link'];
 
-$user_favorites = read_database()[$username]['favorites'];
+$data = read_database();
+$user_favorites = $data[$username]['favorites'];
 $favorite = array_key_exists($link, $user_favorites);
 
-$result = new array();
-$results['favorite'] = $favorited;
+$result = array();
+$result['favorite'] = $favorite;
 
-echo json_encode($results);
+echo json_encode($result);
