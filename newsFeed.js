@@ -83,9 +83,9 @@ function displayNewsItems() {
             link.appendChild(listItem);
 
             var likeButton = createLikeButton();
-            likeButton.setAttribute("data-text", text);
-            likeButton.setAttribute("data-link", linkText);
-            likeButton.setAttribute("data-date", date);
+            likeButton.childNodes[0].setAttribute("data-text", text);
+            likeButton.childNodes[0].setAttribute("data-link", linkText);
+            likeButton.childNodes[0].setAttribute("data-date", date);
 
 			singleItem.appendChild(link);
 			singleItem.appendChild(likeButton);
