@@ -5,7 +5,8 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "addFavorite.php",
-            data: "json",
+            data: postData,
+            datatype: "json",
             success: function(data) {
                 dataAsJSON = JSON.parse(data);
                 console.log(dataAsJSON);
