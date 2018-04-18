@@ -1,5 +1,16 @@
 $(document).ready(function(){
     $(".like-button").click(function(){
-        console.log(this.getAttribute + " "  + this.dataset.link + " " + this.dataset.date);
+        var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
+        
+        $.ajax({
+            type: "POST",
+            url: "addFavorite.php",
+            data: "json",
+            success: function(data) {
+                dataAsJSON = JSON.parse(data);
+                console.log(dataAsJSON);
+            }
+
+        })
     })
 })
