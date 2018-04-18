@@ -61,6 +61,7 @@ if ($_SESSION['username'] != "") {
         </div>
         <button class="btn-default" id="submit-new-sports" onclick="reloadNewsItems()">Go!</button>
     </div>
+    <button id="favorites-list-button" class="btn btn-secondary">Favorites</button>
 </div>
 <div id="topNewsItemsDiv">
 </div>
