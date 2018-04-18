@@ -8,3 +8,5 @@ $link = $_POST['link'];
 $current_users = read_database();
 unset($current_users[$username]['favorites'][$link]);
 write_database($current_users);
+
+echo json_encode($current_users);
