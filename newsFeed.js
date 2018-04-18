@@ -66,20 +66,26 @@ function displayNewsItems() {
     }
     else {
         for (var i = 0; i < aggregateNewsItems.length; i++) {
-            var link = document.createElement("a");
-            link.setAttribute("href", aggregateNewsItems[i]["url"]);
-            link.setAttribute("class", "news-element");
-
+            var text = aggregateNewsItems[i]["text"];
+            var linkText = aggregateNewsItems[i]["text"]
             var date = new Date(aggregateNewsItems[i]["date"]);
+
+            var link = document.createElement("a");
+
+            link.setAttribute("href", linkText);
+            link.setAttribute("class", "news-element");
 
 			var singleItem = document.createElement("div");
 
             var listItem = document.createElement("li");
-            listItem.innerHTML = aggregateNewsItems[i]["text"] + " - " + date.toLocaleDateString('en-US');
+            listItem.innerHTML = text + " - " + date.toLocaleDateString('en-US');
 
             link.appendChild(listItem);
 
             var likeButton = createLikeButton();
+            likeButton.setAttribute("data-text", text);
+            likeButton.setAttribute("data-link", linkText);
+            likeButton.setAttribute("data-date", date);
 
 			singleItem.appendChild(link);
 			singleItem.appendChild(likeButton);
