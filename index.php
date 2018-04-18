@@ -59,8 +59,8 @@ if ($_SESSION['username'] != "") {
                 </div>
             </div>
         </div>
-        <button class="btn-default" id="submit-new-sports" onclick="reloadNewsItems()">Go!</button>
     </div>
+    <button class="btn-default" id="submit-new-sports" onclick="reloadNewsItems()">Go!</button>
     <button id="favorites-list-button" class="btn btn-secondary">Favorites</button>
 </div>
 <div id="topNewsItemsDiv">
