@@ -29,7 +29,7 @@ session_start();
 if ($_SESSION['username'] != "") {
 ?>
 <div id="heading">
-    <h3 id="title">ESPN RSS feed</h3>
+    <h3 id="title">ESPN RSS feed <?php echo " - " . $_SESSION['username']; ?></h3>
     <div id="sport-selection-container">
         <div class="dropdown" id="sport-selection">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -61,7 +61,6 @@ if ($_SESSION['username'] != "") {
         <button class="btn-default" id="submit-new-sports" onclick="reloadNewsItems()">Go!</button>
     </div>
 </div>
-<?php echo "<h3>" . $_SESSION['username'] . "</h3>" ?>
 <div id="topNewsItemsDiv">
 </div>
 </body>

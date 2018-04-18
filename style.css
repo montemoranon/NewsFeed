@@ -83,3 +83,7 @@ h4 {
 .wrapper {
     text-align: center;
 }
+
+#heading {
+	height: 40px;
+}
