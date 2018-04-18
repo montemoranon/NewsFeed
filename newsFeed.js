@@ -45,7 +45,6 @@ function addItemsToAggregate(itemsToAdd) {
     for (var i = 0; i < itemsToAdd.length; i++) {
         aggregateNewsItems.push(itemsToAdd[i]);
     }
-	console.log(aggregateNewsItems);
 }
 
 // sorts the aggregate list by date before display
