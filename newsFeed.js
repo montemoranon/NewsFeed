@@ -72,14 +72,19 @@ function displayNewsItems() {
 
             var date = new Date(aggregateNewsItems[i]["date"]);
 
+			var singleItem = document.createElement("div");
+
             var listItem = document.createElement("li");
             listItem.innerHTML = aggregateNewsItems[i]["text"] + " - " + date.toLocaleDateString('en-US');
 
             link.appendChild(listItem);
-            htmlListItem.appendChild(link);
 
             var likeButton = createLikeButton();
-            htmlListItem.appendChild(likeButton);
+
+			singleItem.appendChild(link);
+			singleItem.appendChild(likeButton);
+
+			htmlListItem.appendChild(singleItem);
 
             document.getElementById("topNewsItemsDiv").appendChild(htmlListItem);
         }
@@ -118,9 +123,9 @@ function createLikeButton() {
     button.setAttribute("type", "checkbox");
     button.setAttribute("value", "");
     button.setAttribute("class", "news-element");
+	button.setAttribute("style", "margin-left:10px; margin-top: 6px;")	
 
     label.appendChild(button);
-    label.innerText = "favorite";
 
     return label;
 }

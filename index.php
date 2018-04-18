@@ -35,7 +35,7 @@ if ($_SESSION['username'] != "") {
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                Dropdown button
+                Sport Selection
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <div class="form-check">
