@@ -19,11 +19,18 @@ function authenticate(userName, password) {
         datatype: "json",
         data: userInfo,
         success: function(data) {
-            var dataAsJSON = JSON.parse(data);
+           // var dataAsJSON = JSON.parse(data);
 
-            if (dataAsJSON["success"] == true) {
-                window.location.replace("index.html");
-            }
+           // if (dataAsJSON["success"] == true) {
+             //   window.location.replace("index.php");
+            //} else {
+				var errorMessage = document.createElement("p");
+				errorMessage.innerHTML = data.toString(); //dataAsJSON["message"];
+				errorMessage.style.color = "red";
+
+				var container = document.getElementById("login-container");
+				container.appendChild(errorMessage);
+			//}
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
