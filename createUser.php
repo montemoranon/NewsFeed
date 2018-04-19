@@ -20,7 +20,7 @@ if (!array_key_exists($username, $users)) {
     write_database($current_users);
 
     $response['success'] = TRUE;
-    $_SESSION['username'] = $username;i
+    $_SESSION['username'] = $username;
 } else {
     // if username already exists, do nothing and return false
 	$response['success'] = FALSE;	

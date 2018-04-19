@@ -203,7 +203,7 @@ function createLikeButton(isFavorited) {
 
 function addFavorite(checked) {
     // if the button is not checked, the item must be added as a favorite on click
-    if (checked) {
+    if (!checked) {
         var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
 
         $.ajax({
