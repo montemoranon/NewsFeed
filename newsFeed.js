@@ -120,17 +120,8 @@ function displayNewsItems() {
 
             link.appendChild(listItem);
 
-            var isFavorited;
 			var postData = {"link": linkText};
-            $.ajax({
-                url: "isFavorite.php",
-                method: "POST",
-                datatype: "json",
-				data: postData,
-                success: function(data) {
-                    isFavorited = data['favorite'];
-                }
-            })
+            var isFavorited = checkIfFavorite(postData);
 
             var likeButton = createLikeButton(isFavorited);
             likeButton.childNodes[0].setAttribute("data-text", text);
@@ -145,6 +136,19 @@ function displayNewsItems() {
             document.getElementById("topNewsItemsDiv").appendChild(htmlListItem);
         }
     }
+}
+
+function checkIfFavorite(postData) {
+    $.ajax({
+        url: "isFavorite.php",
+        method: "POST",
+        datatype: "json",
+        data: postData,
+        success: function(data) {
+            isFavorited = data['favorite'];
+        },
+        async: false
+    })
 }
 
 function reloadNewsItems() {
