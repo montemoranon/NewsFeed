@@ -2,7 +2,7 @@
 session_start();
 require('common.php');
 
-$username = $_POST['username'];
+$username = $_SESSION['username'];
 $link = $_POST['link'];
 
 $data = read_database();

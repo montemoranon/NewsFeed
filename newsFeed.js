@@ -121,10 +121,12 @@ function displayNewsItems() {
             link.appendChild(listItem);
 
             var isFavorited;
+			var postData = {"link": linkText};
             $.ajax({
                 url: "isFavorite.php",
                 method: "POST",
                 datatype: "json",
+				data: postData,
                 success: function(data) {
                     isFavorited = data['favorite'];
                 }
