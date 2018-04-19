@@ -139,6 +139,8 @@ function displayNewsItems() {
 }
 
 function checkIfFavorite(postData) {
+    var isFavorited;
+
     $.ajax({
         url: "isFavorite.php",
         method: "POST",
@@ -149,6 +151,8 @@ function checkIfFavorite(postData) {
         },
         async: false
     })
+
+    return isFavorited;
 }
 
 function reloadNewsItems() {
