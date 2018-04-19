@@ -22,7 +22,6 @@ session_start();
             crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="./newsFeed.js"></script>
-    <script type="text/javascript" src="./addFavorites.js"></script>
 </head>
 <body>
 <?php
