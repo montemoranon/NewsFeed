@@ -189,7 +189,7 @@ function createLikeButton(isFavorited) {
     button.setAttribute("class", "news-element");
     button.setAttribute("class", "like-button");
 	button.setAttribute("style", "margin-left:10px; margin-top: 6px;");
-	button.setAttribute("onclick", "addFavorite");
+	$(button).changed(addFavorite())
 
 	if (isFavorited) {
 	    button.checked = true;
@@ -201,10 +201,8 @@ function createLikeButton(isFavorited) {
 }
 
 function addFavorite() {
-    $(".like-button").click(function(){
-        // if the button is not checked, the item must be added as a favorite on click
-        if (this.checked) {
-            var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
+	 if (this.checked) {
+          var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
 
             $.ajax({
                 type: "POST",
