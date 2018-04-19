@@ -147,6 +147,7 @@ function checkIfFavorite(postData) {
         datatype: "json",
         data: postData,
         success: function(data) {
+			data = JSON.parse(data);
             isFavorited = data['favorite'];
         },
         async: false
