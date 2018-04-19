@@ -188,6 +188,7 @@ function createLikeButton(isFavorited) {
     button.setAttribute("class", "news-element");
     button.setAttribute("class", "like-button");
 	button.setAttribute("style", "margin-left:10px; margin-top: 6px;");
+	button.setAttribute("onclick", "addFavorite");
 
 	if (isFavorited) {
 	    button.checked = true;
@@ -197,6 +198,32 @@ function createLikeButton(isFavorited) {
 
     return label;
 }
+
+function addFavorite() {
+    $(".like-button").click(function(){
+        // if the button is not checked, the item must be added as a favorite on click
+        if (this.checked) {
+            var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
+
+            $.ajax({
+                type: "POST",
+                url: "addFavorite.php",
+                data: postData,
+                datatype: "json"
+            })
+        } else {
+            var postData = {link: this.dataset.link};
+
+            $.ajax({
+                type: "POST",
+                url: "removeFavorite.php",
+                data: postData,
+                dataType: "json"
+            })
+        }
+    })
+}
+
 
 // copy pasted from https://stackoverflow.com/questions/7065615/innerhtml-converts-cdata-to-comments
 function htmlWithCDATASectionsToHtmlWithout(html) {
