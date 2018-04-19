@@ -189,8 +189,9 @@ function createLikeButton(isFavorited) {
     button.setAttribute("class", "news-element");
     button.setAttribute("class", "like-button");
 	button.setAttribute("style", "margin-left:10px; margin-top: 6px;");
-	$(button).changed(addFavorite())
 
+	var checked = button.checked;
+	button.setAttribute("onclick", "addFavorite(" + checked +")");
 	if (isFavorited) {
 	    button.checked = true;
     }
@@ -200,27 +201,27 @@ function createLikeButton(isFavorited) {
     return label;
 }
 
-function addFavorite() {
-	 if (this.checked) {
-          var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
+function addFavorite(checked) {
+    // if the button is not checked, the item must be added as a favorite on click
+    if (checked) {
+        var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
 
-            $.ajax({
-                type: "POST",
-                url: "addFavorite.php",
-                data: postData,
-                datatype: "json"
-            })
-        } else {
-            var postData = {link: this.dataset.link};
+        $.ajax({
+            type: "POST",
+            url: "addFavorite.php",
+            data: postData,
+            datatype: "json"
+        })
+    } else {
+        var postData = {link: this.dataset.link};
 
-            $.ajax({
-                type: "POST",
-                url: "removeFavorite.php",
-                data: postData,
-                dataType: "json"
-            })
-        }
-    })
+        $.ajax({
+            type: "POST",
+            url: "removeFavorite.php",
+            data: postData,
+            dataType: "json"
+        })
+    }	
 }
 
 
