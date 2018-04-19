@@ -123,7 +123,8 @@ function displayNewsItems() {
 			var postData = {"link": linkText};
             var isFavorited = checkIfFavorite(postData);
 
-            var likeButton = createLikeButton(isFavorited);
+            var buttonData = {'text': text, 'link': linkText, 'date': date};
+            var likeButton = createLikeButton(isFavorited, buttonData);
             likeButton.childNodes[0].setAttribute("data-text", text);
             likeButton.childNodes[0].setAttribute("data-link", linkText);
             likeButton.childNodes[0].setAttribute("data-date", date);
@@ -181,7 +182,7 @@ function reloadNewsItems() {
     displayNewsItems();
 }
 
-function createLikeButton(isFavorited) {
+function createLikeButton(isFavorited, buttonData) {
     var label = document.createElement("label");
 
     var button = document.createElement("input");
@@ -191,7 +192,7 @@ function createLikeButton(isFavorited) {
 	button.setAttribute("style", "margin-left:10px; margin-top: 6px;");
 
 	var checked = button.checked;
-	button.setAttribute("onclick", "addFavorite(" + checked +")");
+	button.setAttribute("onclick", "addFavorite(" + checked +", " + buttonData + ")");
 	if (isFavorited) {
 	    button.checked = true;
     }
@@ -201,11 +202,9 @@ function createLikeButton(isFavorited) {
     return label;
 }
 
-function addFavorite(checked) {
+function addFavorite(checked, postData) {
     // if the button is not checked, the item must be added as a favorite on click
     if (!checked) {
-        var postData = {link: this.dataset.link, text: this.dataset.text, date: this.dataset.date}
-
         $.ajax({
             type: "POST",
             url: "addFavorite.php",
